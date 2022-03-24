@@ -2,6 +2,7 @@ const path = require('path');
  
 const fs = require('fs');
 
+// Pedir la ruta al usuario
 const readline = require('readline');
 
 const pathExists = (answer) => fs.existsSync(answer); // Verifying if path exists
@@ -42,6 +43,11 @@ interfazCaptura.close();
 // }
 
 
+
 // module.exports = {
 //   routeExists,
 })
+
+})
+
+//Comprobar si es directorio o archivo
