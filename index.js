@@ -17,3 +17,5 @@ interfazCaptura.question('¿Cuál es su ruta?: ', function(answer){
   interfazCaptura.close();
 
 })
+
+//Comprobar si es directorio o archivo
