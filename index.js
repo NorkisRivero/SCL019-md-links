@@ -2,6 +2,7 @@
 //   // ...
 // };
 
+// Pedir la ruta al usuario
 const readline = require('readline');
 
 let interfazCaptura = readline.createInterface({
