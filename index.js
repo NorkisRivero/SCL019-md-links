@@ -1,3 +1,4 @@
+const cli = require('./cli.js')
 const path = require('path');
  
 const fs = require('fs');
@@ -5,7 +6,11 @@ const fs = require('fs');
 // Pedir la ruta al usuario
 const readline = require('readline');
 
-const pathExists = (answer) => fs.existsSync(answer); // Verifying if path exists
+
+// Comprobar que la ruta exista 
+const routeExists = (answer) => fs.existsSync(answer); 
+
+
 
 
 let interfazCaptura = readline.createInterface({
@@ -18,15 +23,17 @@ interfazCaptura.question('Ingrese su ruta: ', function(route){
   let answer = `${route}`;
   console.log(`Su ruta es: ${answer}`);
 
- 
-if (pathExists(answer)) { 
-  console.log('La ruta existe');
-}
- else {
-   console.log('La ruta no existe');
- }
-interfazCaptura.close();
+if (routeExists(answer)) { 
+  answer = cli.convertPath(answer);
+  console.log('la nueva ruta es...', answer);
 
+}
+else {
+  console.log('La ruta no existe');
+}
+
+interfazCaptura.close();
+}
 
 
 // module.exports = (ruta) => {
@@ -46,8 +53,7 @@ interfazCaptura.close();
 
 // module.exports = {
 //   routeExists,
-})
+)
 
-})
 
 //Comprobar si es directorio o archivo
