@@ -4,12 +4,6 @@ const path = require('path');
 let { lstatSync, readFile, existsSync } = require('fs');
 
 
-// const path = process.argv[2];
-
-// mdlinks(path)
-// .then(file => console.log(file))
-// .catch(err => console.log('error', err));
-
 // Comprobar que la ruta exista 
 const routeExists = (answer) => existsSync(answer); 
 
@@ -29,7 +23,10 @@ const readMyFile = (answer) => {
       return new Promise ((resolve, reject) => {
         readFile(answer, 'utf8', (err, data) => {
           if (err) reject (err);
-          resolve(data);
+         const expReg =  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/g;
+        //  const array = [...data.matchAll(expReg)];
+        const links = data.match(expReg);
+          resolve(links);
         })
     }
       )}
