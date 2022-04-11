@@ -2,6 +2,9 @@ const mdlinks = require ('./index.js');
 const path = require('path');
 
 let { lstatSync, readFile, existsSync } = require('fs');
+const http = require('http');
+const url = require('url');
+
 
 
 // Comprobar que la ruta exista 
@@ -27,12 +30,43 @@ const readMyFile = (answer) => {
         //  const array = [...data.matchAll(expReg)];
         const links = data.match(expReg);
           resolve(links);
-        })
+        });
+      })
+};
+    function statusLink(link) {
+      return new Promise((resolve) => {
+        const options = {
+          method: 'HEAD',
+          host: url.parse(link).host,
+          port: 80,
+          path: url.parse(link).pathname,
+        };
+    
+        const req = http.request(options, (res) => {
+          const nuevaData = {
+            linkname: link,
+            Code: res.statusCode,
+            status: res.statusCode <= 399,
+          };
+          resolve(nuevaData);
+        });
+    
+        req.on('error', (error) => {
+          // console.error(error);
+          const newData = {
+            linkname: link,
+            status: false,
+          };
+          resolve(newData);
+        });
+    
+        req.end();
+      });
     }
-      )}
 
  exports.convertPath = convertPath;
  exports.isFile = isFile;
  exports.verifyExtensionMD = verifyExtensionMD;
  exports.readMyFile = readMyFile;
  exports.routeExists = routeExists;
+ exports.statusLink = statusLink;
