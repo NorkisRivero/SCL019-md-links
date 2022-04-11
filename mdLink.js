@@ -25,7 +25,7 @@ const mdLink = (path, options) => {
                         }
                        arrayLink.push(forLinks);
                       })
-                      console.log('array de link', arrayLink);
+                    //   console.log('array de link', arrayLink);
                       return arrayLink;
                     })
                       .then((arrayLink) => {
@@ -35,7 +35,7 @@ const mdLink = (path, options) => {
                       })
           
                     .then((url) => {
-                      console.log(url);
+                    //   console.log(url);
                       return url
                     })
                  
@@ -53,6 +53,27 @@ const mdLink = (path, options) => {
                         });
                         console.log('Link Válidos', countValid);
                           console.log('Link inválidos', countInvalid);
+                          console.log(url);
+
+
+                      }
+                      else {
+                        if (options.validate) {
+                            console.log(url);
+                        }
+                        if (options.stats) {
+                            url.forEach((e) => {
+                                if (e.status) {
+                                  countValid += 1;
+                                } else {
+                                  countInvalid += 1;
+                                }
+                                
+                              });
+                              console.log('Link Válidos', countValid);
+                                console.log('Link inválidos', countInvalid);
+
+                        }
                       }
                       resolve(url)
                     })
