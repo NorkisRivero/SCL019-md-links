@@ -51,6 +51,7 @@ const mdLink = (path, options) => {
                           }
                           
                         });
+                        console.log('Link encontrados:', url.length);
                         console.log('Link Válidos', countValid);
                           console.log('Link inválidos', countInvalid);
                           console.log(url);
@@ -70,6 +71,7 @@ const mdLink = (path, options) => {
                                 }
                                 
                               });
+                              console.log('Link encontrados:', url.length);
                               console.log('Link Válidos', countValid);
                                 console.log('Link inválidos', countInvalid);
 
