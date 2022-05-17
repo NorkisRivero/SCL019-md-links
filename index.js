@@ -1,19 +1,19 @@
+#!/usr/bin/env node
 
-const readline = require("readline");
-const process = require('process');
+// const process = require('process');
 const { mdLink } = require('./mdLink');
 
 
 const val = process.argv;
 
-const list = {};
+const options = {};
 let path = '';
 
 if (val.some((x) => x === '--validate')) {
-  list.validate = true;
+  options.validate = true;
 }
 if (val.some((x) => x === '--stats')) {
-  list.stats = true;
+  options.stats = true;
 }
 
 
@@ -22,7 +22,8 @@ if (val.some((x) => x === '--stats')) {
   } else {
     path = val[2];
   }
-  mdLink(path, list).then(() => {
+  
+  mdLink(path, options).then(() => {
     console.log();
   }).catch((err) => {
     console.log(err.message);
