@@ -17,6 +17,7 @@
     "test": "test"
   },
   "dependencies": {
+    "colors": "^1.4.0",
     "jest": "^27.5.1",
     "user": "0.0.0"
   },

@@ -1,4 +1,5 @@
 const cli = require('./cli.js');
+const color = require('colors/safe');
 
 const mdLink = (path, options) => {
   console.log();
@@ -8,13 +9,13 @@ const mdLink = (path, options) => {
 
     if (cli.routeExists(answer)) {
       answer = cli.convertPath(answer);
-      console.log("La ruta absoluta es ", answer);
+      console.log(color.green("La ruta absoluta es ", answer));
 
       if (cli.isFile(answer)) {
-        console.log("Es un archivo", answer);
+        console.log(color.blue("Es un archivo", answer));
 
         if (cli.verifyExtensionMD(answer)) {
-          console.log("es un archivo .md");
+          console.log(color.yellow("Es un archivo .md"));
 
           cli.readMyFile(answer).then((file) => {
             file.forEach((url) => {
@@ -51,9 +52,9 @@ const mdLink = (path, options) => {
                   }
 
                 });
-                console.log('Link encontrados:', url.length);
-                console.log('Link Válidos', countValid);
-                console.log('Link inválidos', countInvalid);
+                console.log(color.red('Link encontrados:', url.length));
+                console.log(color.green('Link Válidos', countValid));
+                console.log(color.yellow('Link inválidos', countInvalid));
                 console.log(url);
 
 
@@ -71,9 +72,9 @@ const mdLink = (path, options) => {
                     }
 
                   });
-                  console.log('Link encontrados:', url.length);
-                  console.log('Link Válidos', countValid);
-                  console.log('Link inválidos', countInvalid);
+                  console.log(color.yellow('Link encontrados:', url.length));
+                  console.log(color.green('Link Válidos:', countValid));
+                  console.log(color.red('Link inválidos:', countInvalid));
 
                 }
               }
@@ -82,15 +83,15 @@ const mdLink = (path, options) => {
 
         }
         else {
-          console.log("no es archivo .md");
+          console.log(color.red("No es archivo .md"));
         }
 
       } else {
-        console.log("es un directorio",);
+        console.log(color.yellow("Es un directorio"));
       }
 
     } else {
-      console.log("La ruta no existe");
+      console.log(color.red("La ruta no existe"));
     }
 
   }
