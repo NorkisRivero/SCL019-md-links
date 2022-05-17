@@ -52,9 +52,9 @@ const mdLink = (path, options) => {
                   }
 
                 });
-                console.log(color.red('Link encontrados:', url.length));
+                console.log(color.yellow('Link encontrados:', url.length));
                 console.log(color.green('Link Válidos', countValid));
-                console.log(color.yellow('Link inválidos', countInvalid));
+                console.log(color.red('Link inválidos', countInvalid));
                 console.log(url);
 
 
